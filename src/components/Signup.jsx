@@ -10,6 +10,7 @@ import {
   Alert,
   CircularProgress,
 } from '@mui/material';
+import './Signup.css'; // Import the CSS file
 
 const SignupForm = () => {
   const [email, setEmail] = useState('');
@@ -51,23 +52,18 @@ const SignupForm = () => {
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gray-100">
-      <Card className="w-full max-w-md">
+    <div className="signup-container">
+      <Card className="signup-card">
         <CardHeader
-          title={
-            <Typography variant="h5" className="text-center font-bold">
-              Create an Account
-            </Typography>
-          }
+          title={<Typography variant="h5" className="signup-title">Create an Account</Typography>}
           subheader={
-            <Typography variant="body2" className="text-center text-gray-600">
+            <Typography variant="body2" className="signup-subtitle">
               Sign up to get started
             </Typography>
           }
-          className="pb-0"
         />
         <CardContent>
-          <form onSubmit={handleSignup} noValidate className="space-y-4">
+          <form onSubmit={handleSignup} noValidate className="signup-form">
             <TextField
               fullWidth
               label="Email"
@@ -75,7 +71,6 @@ const SignupForm = () => {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
-              className="bg-white"
             />
             <TextField
               fullWidth
@@ -84,7 +79,6 @@ const SignupForm = () => {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
-              className="bg-white"
             />
             <TextField
               fullWidth
@@ -93,10 +87,9 @@ const SignupForm = () => {
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
               required
-              className="bg-white"
             />
             {error && (
-              <Alert severity="error" className="mt-2">
+              <Alert severity="error" className="signup-alert">
                 {error}
               </Alert>
             )}
@@ -106,18 +99,14 @@ const SignupForm = () => {
               variant="contained"
               color="primary"
               disabled={isLoading}
-              className="mt-4 mb-2 py-2 bg-blue-600 hover:bg-blue-700"
+              className="signup-button"
             >
-              {isLoading ? (
-                <CircularProgress size={24} color="inherit" />
-              ) : (
-                'Sign Up'
-              )}
+              {isLoading ? <CircularProgress size={24} color="inherit" /> : 'Sign Up'}
             </Button>
           </form>
-          <Typography variant="body2" className="text-center mt-4">
+          <Typography variant="body2" className="signup-footer">
             Already have an account?{' '}
-            <a href="/login" className="text-blue-600 hover:underline">
+            <a href="/login" className="signup-link">
               Log in
             </a>
           </Typography>
@@ -128,4 +117,3 @@ const SignupForm = () => {
 };
 
 export default SignupForm;
-

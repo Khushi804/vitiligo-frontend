@@ -10,6 +10,7 @@ import {
   CircularProgress,
   Alert,
 } from '@mui/material';
+import './Login.css'; // Import the CSS file
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -41,23 +42,18 @@ const Login = () => {
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gray-100">
-      <Card className="w-full max-w-md">
+    <div className="login-container">
+      <Card className="login-card">
         <CardHeader
-          title={
-            <Typography variant="h5" className="text-center font-bold">
-              Welcome Back
-            </Typography>
-          }
+          title={<Typography variant="h5" className="login-title">Welcome Back</Typography>}
           subheader={
-            <Typography variant="subtitle1" className="text-center text-gray-600">
+            <Typography variant="subtitle1" className="login-subtitle">
               Please sign in to your account
             </Typography>
           }
-          className="pb-0"
         />
         <CardContent>
-          <form onSubmit={handleLogin} className="space-y-4">
+          <form onSubmit={handleLogin} className="login-form">
             <TextField
               label="Email"
               type="email"
@@ -65,7 +61,6 @@ const Login = () => {
               fullWidth
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="bg-white"
             />
             <TextField
               label="Password"
@@ -74,31 +69,22 @@ const Login = () => {
               fullWidth
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="bg-white"
             />
-            {error && (
-              <Alert severity="error" className="mt-2">
-                {error}
-              </Alert>
-            )}
+            {error && <Alert severity="error" className="login-alert">{error}</Alert>}
             <Button
               type="submit"
               variant="contained"
               color="primary"
               fullWidth
               disabled={isLoading}
-              className="mt-4 py-2 bg-blue-600 hover:bg-blue-700"
+              className="login-button"
             >
-              {isLoading ? (
-                <CircularProgress size={24} color="inherit" />
-              ) : (
-                'Sign In'
-              )}
+              {isLoading ? <CircularProgress size={24} color="inherit" /> : 'Sign In'}
             </Button>
           </form>
-          <Typography variant="body2" className="text-center mt-4">
+          <Typography variant="body2" className="login-footer">
             Don't have an account?{' '}
-            <a href="/signup" className="text-blue-600 hover:underline">
+            <a href="/signup" className="login-link">
               Sign up
             </a>
           </Typography>
@@ -109,4 +95,3 @@ const Login = () => {
 };
 
 export default Login;
-
